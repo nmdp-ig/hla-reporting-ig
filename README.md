@@ -14,7 +14,7 @@ To build this Implementation Guide, you'll need
 + https://nodejs.org/
 
 ## Install Sushi:
-the most recent version of sushi, 0.12.7, has a bug when creating IG ids, so use the last version.
+Version 0.12.6 is known to work with this IG.
 ```
 npm install -g fsh-sushi@0.12.6
 ```
@@ -28,14 +28,13 @@ npm install -g fsh-sushi@0.12.6
     + https://jekyllrb.com/docs/installation/other-linux/
 
 ## Download the IG Publisher
-Download the IG Publisher into top level of repo. The most recent version of the IG Publisher that works with this is 1.0.94-SNAPSHOT
+Download the IG Publisher into top level of repo. 
+The version of the IG Publisher known to works with this IG is 1.0.94-SNAPSHOT
 
 ```
 $ cd hla-reporting-ig/
 $ wget -O org.hl7.fhir.publisher.jar "https://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&g=org.hl7.fhir.publisher&a=org.hl7.fhir.publisher.cli&v=1.0.94-SNAPSHOT&e=jar$"
 ```
-
-
 
 ## Run sushi
 
@@ -114,4 +113,74 @@ Errors: 0  Warnings: 0  Info: 12 (00:37.0710)
 Done                                                                             (00:37.0710)
 $ 
 ```
+
+## Publish the IG
+```
+cd ../..
+git clone git@github.com:FHIR/ig-registry.git
+git clone git@github.com:HL7/fhir-ig-history-template.git
+cd hla-reporting-ig/build
+# 1st step in publishing - creates a yellow box containing ''Publication Build: This will be filled in by the publication tooling' on index.html
+java -jar ../org.hl7.fhir.publisher.jar -ig ig.ini -publish
+
+mkdir website
+cp -r ../../fhir-ig-history-template/* website/
+```
+
+# create website/publish.ini
+```
+[website]
+style=fhir.layout
+server=apache
+url=http://fhir.nmdp.org/ig/hla-reporting
+org=NMDP
+no-registry=1
+
+[feeds]
+package=package-feed.xml
+publication=publication-feed.xml
+```
+
+#create website/package-list.json
+```
+{
+"package-id": "hla-reporting",
+"title": "HLA Reporting Implementation Guide",
+"canonical": "http://fhir.nmdp.org/ig/hla-reporting",
+"introduction": "HLA Reporting Implementation Guide base on Genomics Reporting IG",
+"list": [
+    {
+        "version": "0.0.2",
+        "date": "2020-06-01",
+        "desc": "Draft",
+        "path": "http://fhir.nmdp.org/ig/hla-reporting",
+        "status": "trial-use",
+        "fhirversion": "4.0.1",
+        "sequence": "Trial Use: 1",
+        "current": true
+    },
+    {
+        "version": "0.0.1",
+        "date": "2020-05-01",
+        "desc": "Draft",
+        "path": "http://fhir.nmdp.org/ig/hla-reporting/2020May",
+        "status": "trial-use",
+        "sequence": "Trial Use: 1",
+        "fhirversion": "4.0.1"
+    }]
+}
+```
+
+# copy current build to website
+cp -r output/* website/
+
+# create subdirectory for milestone
+mkdir website/2020May
+cp -r output/* website/2020May/
+
+# update website/package-list.json as needed
+# run publisher to create web redirects and final output
+java -jar ../org.hl7.fhir.publisher.jar -publish-update -folder  website -registry  ../../ig-registry/fhir-ig-list.json
+
+# copy website contents to deploy-ready branch
 
