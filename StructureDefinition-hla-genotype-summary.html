@@ -41,8 +41,7 @@
     h3,h4,h5,h6{--heading-prefix:"3.5"}</style>
     <div id="segment-header" class="segment">  <!-- segment-header -->
       <div class="container">  <!-- container -->
-        <!-- Placeholder for child template header declarations -->
-
+        
 
         <div id="ig-status">
           <p><span style="font-size:12pt;font-weight:bold">HLA Reporting Implementation Guide</span><br/>0.0.1 - Draft</p>
@@ -128,60 +127,40 @@
       <div class="container">  <!-- container -->
         <div class="row">
           <div class="inner-wrapper">
+
+
+
+
 <div class="col-12">
-  <!--ReleaseHeader--><p id="publish-box">This page is part of the HLA Reporting Implementation Guide (v2020Jun: 2020Jun Draft) based on <a href="http://hl7.org/fhir/R4">FHIR R4</a>. .  For a full list of available versions, see the <a href="http://fhir.nmdp.org/ig/hla-reporting/history.html">Directory of published versions <img src="external.png" style="text-align: baseline"></a></p><!--EndReleaseHeader-->
-  
+  <!--ReleaseHeader--><p id="publish-box">This page is part of the HLA Reporting Implementation Guide (v0.0.1: Trial Use: 1) based on <a href="http://hl7.org/fhir/R4">FHIR R4</a>. This is the current published version.  For a full list of available versions, see the <a href="http://fhir.nmdp.org/ig/hla-reporting/history.html">Directory of published versions <img src="external.png" style="text-align: baseline"></a></p><!--EndReleaseHeader-->
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="#">Content</a>
+    </li>
+    <li>
+      <a href="StructureDefinition-hla-genotype-summary-definitions.html">Detailed Descriptions</a>
+    </li>
 
-
-
-
-
-<ul class="nav nav-tabs">
-
-  <li class="active">
-    <a href="#">Content</a>
-  </li>
-
-
-
-  <li>
-    <a href="StructureDefinition-hla-genotype-summary-definitions.html">Detailed Descriptions</a>
-  </li>
-
-
-
-  
     <li>
       <a href="StructureDefinition-hla-genotype-summary-mappings.html">Mappings</a>
     </li>
-  
 
 
-
-
-
-  
     <li>
       <a href="StructureDefinition-hla-genotype-summary.profile.xml.html">XML</a>
     </li>
-  
 
 
-  
     <li>
       <a href="StructureDefinition-hla-genotype-summary.profile.json.html">JSON</a>
     </li>
-  
 
 
-  
     <li>
-      <a href="StructureDefinition-hla-genotype-summary.profile.ttl.html">TTL</a>
+      <a href="StructureDefinition-hla-genotype-summary.profile.ttl.html">Turtle</a>
     </li>
-  
 
-</ul>
-
+  </ul>
   <a name="root"> </a>
   <h2 id="root">Extension: HLAGenotypeSummary</h2>
   <p><p>Summary genotype of HLA in GL String Code</p>
@@ -197,14 +176,12 @@
   <p>This extension may be used on the following  element(s):</p>
   <ul>
     
-    <li>Element</li>
+    <li>{"type"=>"Element"}</li>
     
   </ul>
-
-  <!-- insert intro if present -->
   
-
-
+  
+  
 
   <p><b>Usage info</b></p>
   <p><b>Usage:</b></p>
@@ -212,7 +189,7 @@
  <li>Use this Extension: <a href="StructureDefinition-hla-summary-report.html">HLA Summary Report</a></li>
 </ul>
 
-
+  
   <!-- no uri -->
   <a name="profile"> </a>
   <h3 id="profile">Formal Views of Extension Content</h3>
@@ -439,24 +416,19 @@ Summary
   <p>Other representations of extension: <a href="StructureDefinition-hla-genotype-summary.sch">Schematron</a>
   </p>
   <a name="tx"> </a>
-  <!--Terminology Bindings heading in the fragment -->
+  <h3 id="tx">Terminology Bindings</h3>
   
-
+  
   <a name="inv"> </a>
-  <!--Constraints  heading in the fragment -->
+  <h3 id="inv">Constraints</h3>
   <h4>Constraints</h4>
 <table class="list">
 <tr><td width="60"><b>Id</b></td><td><b>Path</b></td><td><b>Details</b></td><td><b>Requirements</b></td></tr>
 </table>
 
 
-  <!-- insert notes if present -->
   
-
-
-
   
-
 </div>
 
         </div>  <!-- /inner-wrapper -->
@@ -464,9 +436,9 @@ Summary
     </div>  <!-- /container -->
   </div>  <!-- /segment-content -->
 
-  <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
-  <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
 
+  <script type="text/javascript" src="jquery.js"> </script>
+  <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
   <script type="text/javascript">
     try {
       var currentTabIndex = sessionStorage.getItem('fhir-resource-tab-index');
@@ -490,18 +462,11 @@ Summary
     });
   </script>
 
-  <script type="text/javascript">
-    $(document).ready(function(){
-      if(window.location.hash != "") {
-          $('a[href="' + window.location.hash + '"]').click()
-      }
-    });
-  </script>
   <div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
     <div class="container">  <!-- container -->
       <div class="inner-wrapper">
         <p>
-          IG &#169; 2019+ <a style="color: #81BEF7" href="mailto:bmilius@nmdp.org">NMDP/Be The Match</a>.  Package hla-reporting#0.0.1 based on <a style="color: #81BEF7" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Thu, Jun 18, 2020 09:20-0500">2020-06-18</span>
+          IG &#169; 2019+ <a style="color: #81BEF7" href="mailto:bmilius@nmdp.org">NMDP/Be The Match</a>.  Package hla-reporting#0.0.1 based on <a style="color: #81BEF7" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Wed, Oct 7, 2020 12:52-0500">2020-10-07</span>
           <br/>
           <span style="color: #FFFF77">
                       Links: <a style="color: #81BEF7" href="toc.html">Table of Contents</a> |
@@ -521,6 +486,7 @@ Summary
   <!-- Bootstrap core JavaScript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
   <script type="text/javascript" src="assets/js/bootstrap.min.js"> </script>
   <script type="text/javascript" src="assets/js/respond.min.js"> </script>
   <script type="text/javascript" src="assets/js/anchor.min.js"> </script>
@@ -531,4 +497,3 @@ anchors.add()</script>
   ================================================== -->
   </body>
 </html>
-

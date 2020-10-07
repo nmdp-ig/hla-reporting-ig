@@ -1,0 +1,18 @@
+{
+    "package-id": "hla-reporting",
+    "title": "HLA Reporting Implementation Guide",
+    "canonical": "http://fhir.nmdp.org/ig/hla-reporting",
+    "introduction": "HLA Reporting Implementation Guide base on Genomics Reporting IG",
+    "list": [
+        {
+            "version": "0.0.1",
+            "date": "2020-06-01",
+            "desc": "Draft",
+            "path": "http://fhir.nmdp.org/ig/hla-reporting",
+            "status": "trial-use",
+            "fhirversion": "4.0.1",
+            "sequence": "Trial Use: 1",
+            "current": true
+        }
+    ]
+}

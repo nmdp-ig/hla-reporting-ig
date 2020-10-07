@@ -1,8 +1,8 @@
 {
   "resourceType" : "Bundle",
-  "id" : "588f35cb-99f1-42a9-b1d4-7f4aef9952c6",
+  "id" : "5c422216-5968-4f26-9c98-d280cb19b887",
   "meta" : {
-    "lastUpdated" : "2020-06-18T09:20:06.444-05:00"
+    "lastUpdated" : "2020-10-07T12:52:39.135-05:00"
   },
   "type" : "collection",
   "entry" : [{
@@ -19,7 +19,7 @@
       "name" : "HLAGeneIdVS",
       "title" : "HLA Gene Name Value Set",
       "status" : "active",
-      "date" : "2020-06-18T09:20:06-05:00",
+      "date" : "2020-10-07T12:52:39-05:00",
       "publisher" : "NMDP/Be The Match",
       "contact" : [{
         "name" : "Bob Milius",
@@ -30,8 +30,8 @@
       }],
       "description" : "HLA HGNC GeneIds Valueset",
       "expansion" : {
-        "identifier" : "urn:uuid:90122b6d-b580-4009-b483-44fb96b0cfbf",
-        "timestamp" : "2020-06-18T09:20:15-05:00",
+        "identifier" : "urn:uuid:2777b671-be99-414c-a3e5-25982babe107",
+        "timestamp" : "2020-10-07T12:52:51-05:00",
         "total" : 44,
         "parameter" : [{
           "name" : "excludeNested",

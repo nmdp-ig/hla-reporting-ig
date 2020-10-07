@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:fhir="http://hl7.org/fhir/feed" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>NMDP FHIR Publications</title>
+    <description>New publications by NMDP></description>
+    <link>http://fhir.nmdp.org/ig/hla-reporting/package-feed.xml</link>
+    <generator>HL7, Inc FHIR Publication tooling</generator>
+    <lastBuildDate>Wed, 07 Oct 2020 01:33:37 GMT</lastBuildDate>
+    <atom:link href="http://fhir.nmdp.org/ig/hla-reporting/package-feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 07 Oct 2020 01:33:37</pubDate>
+    <language>en></language>
+    <ttl>600</ttl>
+    <item>
+      <title>HLA Reporting Implementation Guide</title>
+      <description>Draft</description>
+      <link>http://fhir.nmdp.org/ig/hla-reporting/index.html</link>
+      <guid isPermaLink="true">http://fhir.nmdp.org/ig/hla-reporting/index.html</guid>
+      <dc:creator>NMDP</dc:creator>
+      <fhir:version>4.0.1</fhir:version>
+      <fhir:kind>fhir.ig</fhir:kind>
+      <pubDate>Mon, 01 Jun 2020 12:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

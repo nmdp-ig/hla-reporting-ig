@@ -10,7 +10,7 @@
   "name": "HLAReportingImplementationGuide",
   "title": "HLA Reporting Implementation Guide",
   "status": "active",
-  "date": "2020-06-18T09:20:06-05:00",
+  "date": "2020-10-07T12:52:39-05:00",
   "publisher": "NMDP/Be The Match",
   "contact": [
     {
@@ -81,32 +81,6 @@
         "extension": [
           {
             "url": "code",
-            "valueString": "path-liquid"
-          },
-          {
-            "url": "value",
-            "valueString": "template/liquid"
-          }
-        ],
-        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
-      },
-      {
-        "extension": [
-          {
-            "url": "code",
-            "valueString": "path-liquid"
-          },
-          {
-            "url": "value",
-            "valueString": "input/liquid"
-          }
-        ],
-        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
-      },
-      {
-        "extension": [
-          {
-            "url": "code",
             "valueString": "path-qa"
           },
           {
@@ -151,19 +125,6 @@
           {
             "url": "value",
             "valueString": "input/ignoreWarnings.txt"
-          }
-        ],
-        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
-      },
-      {
-        "extension": [
-          {
-            "url": "code",
-            "valueString": "path-history"
-          },
-          {
-            "url": "value",
-            "valueString": "http://fhir.nmdp.org/ig/hla-reporting/history.html"
           }
         ],
         "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
@@ -692,14 +653,6 @@
       {
         "code": "path-resource",
         "value": "input/vocabulary"
-      },
-      {
-        "code": "path-resource",
-        "value": "input/maps"
-      },
-      {
-        "code": "path-resource",
-        "value": "input/testing"
       },
       {
         "code": "path-pages",
