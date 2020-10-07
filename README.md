@@ -33,7 +33,7 @@ The version of the IG Publisher known to works with this IG is 1.0.94-SNAPSHOT
 
 ```
 $ cd hla-reporting-ig/
-$ wget -O org.hl7.fhir.publisher.jar "https://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&g=org.hl7.fhir.publisher&a=org.hl7.fhir.publisher.cli&v=1.0.94-SNAPSHOT&e=jar$"
+$ wget -O org.hl7.fhir.publisher.jar "https://oss.sonatype.org/service/local/repositories/snapshots/content/org/hl7/fhir/publisher/org.hl7.fhir.publisher.cli/1.0.94-SNAPSHOT/org.hl7.fhir.publisher.cli-1.0.94-20200512.015822-1.jar"
 ```
 
 ## Run sushi
