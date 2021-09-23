@@ -9,6 +9,9 @@
     "hl7.fhir.r4.core": "4.0.1",
     "hl7.fhir.uv.genomics-reporting": "1.0.0"
   },
+  "resolutions": {
+    "sharp": "^0.27.1"
+  },
   "keywords": [
     "HLA",
     "Genotype",
