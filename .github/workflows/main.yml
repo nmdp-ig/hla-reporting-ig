@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Kick-gitlab-CI CD deploy to dev1.fhir.nmdp.org
 
 # Controls when the workflow will run
 on:
