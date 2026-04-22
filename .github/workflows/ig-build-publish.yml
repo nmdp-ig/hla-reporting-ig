@@ -1,5 +1,11 @@
-# Build HLA Reporting IG with SUSHI + IG Publisher, deploy to GitHub Pages
+# Build HLA Reporting IG with SUSHI + IG Publisher + go-publish, deploy to GitHub Pages
+# and commit publication artifacts to deploy-ready branch.
+#
 # Preview at: https://nmdp-ig.github.io/hla-reporting-ig/
+#
+# NOTE: This repo uses the older SUSHI project structure (FSH at root, package.json).
+# SUSHI v3 requires migration to the new structure (input/fsh/, sushi-config.yaml).
+# The IG Publisher will attempt to run SUSHI internally if needed.
 #
 # Setup (one-time):
 #   Settings > Pages > Source: GitHub Actions
@@ -9,9 +15,9 @@ name: Build & Publish IG
 
 on:
   push:
-    branches: [master, deploy-ready, deploy-ready-dev]
+    branches: [master, "feature/**"]
   pull_request:
-    branches: [master, deploy-ready]
+    branches: [master]
   workflow_dispatch:
 
 concurrency:
@@ -19,7 +25,7 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -51,18 +57,52 @@ jobs:
       - name: Install SUSHI
         run: npm install -g fsh-sushi
 
-      - name: Run SUSHI
-        run: sushi .
-        continue-on-error: true
-
+      # This repo uses old SUSHI structure - let the IG Publisher handle SUSHI internally
       - name: Download IG Publisher
         run: |
           mkdir -p input-cache
           curl -L -o input-cache/publisher.jar \
             https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar
 
+      - name: Get IG metadata
+        id: meta
+        run: |
+          VERSION=$(python3 -c "import json; print(json.load(open('package.json'))['version'])")
+          CANONICAL=$(python3 -c "import json; print(json.load(open('package.json'))['canonical'])")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "canonical=$CANONICAL" >> $GITHUB_OUTPUT
+          echo "Building $CANONICAL version $VERSION"
+
       - name: Build IG
-        run: java -Xmx8g -jar input-cache/publisher.jar publisher -ig ig-data/ig.ini
+        run: |
+          java -Xmx8g -jar input-cache/publisher.jar publisher \
+            -ig ig-data/ig.ini \
+            -publish ${{ steps.meta.outputs.canonical }}/${{ steps.meta.outputs.version }}
+
+      - name: Setup publication dependencies
+        run: |
+          git clone --depth 1 https://github.com/HL7/fhir-ig-history-template.git fhir-ig-history-template
+          git clone --depth 1 https://github.com/FHIR/ig-registry.git ig-registry
+
+      - name: Prepare web-root
+        run: |
+          mkdir -p publication/web-root/hla-reporting
+          cp -r output/* publication/web-root/hla-reporting/
+          mkdir -p publication/web-root/hla-reporting/${{ steps.meta.outputs.version }}
+          cp -r output/* publication/web-root/hla-reporting/${{ steps.meta.outputs.version }}/
+          cp -r fhir-ig-history-template/* publication/web-root/hla-reporting/ 2>/dev/null || true
+
+      - name: Run publish-update
+        run: |
+          java -Xmx4g -jar input-cache/publisher.jar \
+            -publish-update \
+            -folder publication/web-root/hla-reporting \
+            -registry ig-registry/fhir-ig-list.json \
+            -history fhir-ig-history-template
+        continue-on-error: true
+
+      - name: Stash publication output
+        run: cp -r publication/web-root/hla-reporting /tmp/pub-output
 
       - name: Upload QA artifact
         if: always()
@@ -70,15 +110,32 @@ jobs:
         with:
           name: ig-output
           path: |
-            output/
-            !output/package.tgz
-          retention-days: 14
+            output/qa.html
+            output/qa.json
+            output/qa.txt
+          retention-days: 30
 
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: output/
+          path: publication/web-root/hla-reporting/
+
+      - name: Commit to deploy-ready
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git fetch origin deploy-ready || true
+          git checkout deploy-ready 2>/dev/null || git checkout --orphan deploy-ready
+
+          git rm -rf . 2>/dev/null || true
+          cp -r /tmp/pub-output/* .
+
+          git add -A
+          git commit -m "Publication build from ${{ github.sha }} (v${{ steps.meta.outputs.version }})" || echo "No changes to commit"
+          git push origin deploy-ready --force
 
   deploy:
     needs: build
